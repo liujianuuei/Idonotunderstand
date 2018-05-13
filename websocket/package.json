@@ -1,0 +1,26 @@
+{
+  "name": "idonotunderstandwebsocket",
+  "version": "1.0.0",
+  "description": "I do not understand websocket",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jianliuwei/Idonotunderstand.git"
+  },
+  "keywords": [
+    "websocket"
+  ],
+  "author": "Jianwei Liu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jianliuwei/Idonotunderstand/issues"
+  },
+  "homepage": "https://github.com/jianliuwei/Idonotunderstand#readme",
+  "dependencies": {
+    "crypto-js": "^3.1.9-1",
+    "ws": "^5.1.1"
+  }
+}

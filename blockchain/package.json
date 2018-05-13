@@ -1,0 +1,22 @@
+{
+  "name": "idonotunderstandblockchain",
+  "version": "1.0.0",
+  "description": "I do not understand blockchain",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jianliuwei/Idonotunderstand.git"
+  },
+  "keywords": [
+    "blockchain"
+  ],
+  "author": "Jianwei Liu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jianliuwei/Idonotunderstand/issues"
+  },
+  "homepage": "https://github.com/jianliuwei/Idonotunderstand#readme"
+}
