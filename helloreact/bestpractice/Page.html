@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hello JSX</title>
+    <!--
+    <style type="text/css">
+        @import url(Style.css);
+    </style>
+    -->
+    <link rel="stylesheet" href="Style.css" type="text/css"/>
+</head>
+<body>
+<div id="container">
+    React will works here!
+</div>
+<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/react-dom-factories@1.0.0/index.js"></script>
+<script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+<script src="SubCom.js"></script>
+<script src="State.js"></script>
+
+<script type="text/babel">
+    'use strict'
+
+    const e = React.createElement
+    const f = ReactDOMFactories
+
+    class View extends React.Component {
+        constructor(props) {
+            super(props)
+            this.state = {
+                data: this.props.defaultData,
+                sortby: null,
+                descending: false,
+                //edit: null, // not must have
+                search: false,
+                searchLabel: "Search",
+                //dataCopy: null,
+            }
+            this.c = new State({this: this})
+        }
+
+        render() {
+            return <div>
+                {this._renderToolbar()}
+                {this._renderTable()}
+            </div>
+        }
+
+        _renderTable() {
+            return <table>
+                <thead onClick={this.c._sort.bind(this.c)}>
+                <tr>
+                    {
+                        this.props.headers.map((title, index) => {
+                            if (this.state.sortby === index) {
+                                title += this.state.descending ? "\u2191" : "\u2193"
+                            }
+                            return <th key={index}>{title}</th>
+                        })
+                    }
+                </tr>
+                </thead>
+                <tbody onDoubleClick={this.c._changeToEditable.bind(this.c)}>
+                {
+                    this._renderSearch()
+                }
+                {
+                    this.state.data.map((row, rowindex) => {
+                        return <tr key={rowindex}>
+                            {
+                                row.map((cell, cellIndex) => {
+                                    let content = cell
+                                    let edit = this.state.edit
+                                    if (edit && edit.row === rowindex && edit.cell === cellIndex) {
+                                        content = <form onSubmit={this.c._save.bind(this.c)}><input type="text"
+                                                                                                    defaultValue={content}/>
+                                        </form>
+                                    }
+                                    return <td key={cellIndex} data-row={rowindex}>{content}</td>
+                                })
+                            }</tr>
+                    })
+                }
+                </tbody>
+            </table>
+        }
+
+        _renderSearch() {
+            if (!this.state.search) {
+                return null
+            }
+            return f.tr({
+                onChange: event => {
+                    this.c._search(event)
+                }
+            }, this.props.headers.map((title, index) => {
+                return f.td({key: index}, f.input({
+                    type: "text",
+                    "data-index": index
+                }))
+            }))
+        }
+
+        _renderToolbar() {
+            const search = f.button({
+                onClick: event => {
+                    this.c._toggleSearch(event)
+                }
+            }, this.state.searchLabel)
+            return search
+        }
+
+        componentDidMount() {
+            document.onkeydown = function (event) { // TODO document ?!
+                if (event.altKey && event.shiftKey && event.keyCode === 82) {
+                    this.c._replay()
+                }
+            }.bind(this) // Note bind this
+        }
+    }
+
+    class ViewExtended extends View {
+        _renderToolbar() {
+            const exportJSON = f.a({
+                onClick: this.c._download.bind(this.c, "json"),
+                href: "data.json",
+                download: "data.json"
+            }, "Export JSON")
+            const exportCSV = f.a({
+                onClick: this.c._download.bind(this.c, "csv"),
+                href: "data.csv",
+                download: "data.csv"
+            }, "Export CSV")
+            return <div className="toolbar">
+                {super._renderToolbar()}
+                {exportJSON}
+                {exportCSV}
+                {this.props.children}
+            </div>
+        }
+    }
+</script>
+<script type="text/babel">
+    var headers = ["Book", "Author", "Language", "Published", "Sales"]
+    var data = [["A", "D", "Y", "S", "E"], ["T", "W", "M", "I", "P"], ["O", "Q", "F", "X", "E"], ["H", "J", "V", "R", "U"]]
+
+    const container = document.getElementById("container")
+    const element = <ViewExtended headers={headers} defaultData={data}><SubCom/></ViewExtended>
+    ReactDOM.render(element, container)
+</script>
+</body>
+</html>

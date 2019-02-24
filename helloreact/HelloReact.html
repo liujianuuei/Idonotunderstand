@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hello React</title>
+</head>
+<body>
+<div id="container">
+    React will works here!
+</div>
+<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/react-dom-factories@1.0.0/index.js"></script>
+<script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+<script src="like_button.js"></script>
+<script>
+    const container = document.getElementById("container")
+    let element
+
+    // built-in elements
+    //element = ReactDOMFactories.h1(null, "Hello React!");
+    //ReactDOM.render(element, container);
+
+    // React create element with string(for built-in components)
+    //element = e('h1', null, "Hello React!");
+    //ReactDOM.render(element, container);
+
+    // React create element with function(for composite components)
+    /*element = e(function() {
+        return {
+            render: function() {
+                return ReactDOMFactories.h1(null, "Hello React!");
+            }
+        }
+    });
+    ReactDOM.render(element, container);*/
+
+    // React create element with class/React.Component(for composite components)
+    const com = class extends React.Component {
+        render() {
+            return e('h1', null, "Hello " + this.props.name)
+        }
+    }
+    com.propTypes = {
+        name: PropTypes.string.isRequired,
+    }
+    com.defaultProps = {
+        name: "React",
+    }
+    element = e(com, {name: "React!"})
+    ReactDOM.render(element, container)
+
+    // React create element with React.Component
+    //element = e(LikeButton);
+    //ReactDOM.render(element, container);
+</script>
+</body>
+</html>
