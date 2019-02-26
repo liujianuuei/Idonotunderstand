@@ -1,0 +1,28 @@
+{
+  "name": "Idonotunderstand",
+  "version": "1.0.0",
+  "description": "![What I cannot create, I do not understand](wicncidnu.jpg)",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jianliuwei/Idonotunderstand.git"
+  },
+  "author": "Liu, Jianwei",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jianliuwei/Idonotunderstand/issues"
+  },
+  "homepage": "https://github.com/jianliuwei/Idonotunderstand#readme"
+}
