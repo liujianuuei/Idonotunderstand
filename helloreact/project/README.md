@@ -1,0 +1,1 @@
+This is a modular React project, the building tool is created by myself, which is for the purpose of practice. Third party building tools like Webpack, Grunt, Gulp could be used in real development.
