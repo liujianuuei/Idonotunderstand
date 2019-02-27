@@ -10,8 +10,11 @@
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
     "browserify": "^16.2.3",
+    "csscolormin": "^0.1.0",
+    "cssshrink": "0.0.5",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
+    "uglify-js": "^3.4.9",
     "watch": "^1.0.2"
   },
   "scripts": {

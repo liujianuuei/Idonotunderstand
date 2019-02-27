@@ -11,4 +11,4 @@
 
 @PowerShell -NoProfile -ExecutionPolicy Bypass -Command "(Get-Content bundle.css).replace('../../images', 'images') | Set-Content bundle.css"
 
-@echo Totally DONE %date%%time%
+@echo Build DONE %date%%time%
