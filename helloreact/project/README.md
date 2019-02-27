@@ -1,1 +1,3 @@
 This is a modular React project, the building tool is created by myself, which is for the purpose of practice. Third party building tools like Webpack, Grunt, Gulp could be used in real development.
+
+The latest csscolormin module is using esm, but cssshrink which depends on csscolormin does not use esm yet. Actually Node.js v10.15.1 does not support esm yet. So you have to copy the index.js in `/backup/csscolormin-d0a73adc393b9a6e380acd91a94df17993bb96e3.zip` to `/node_modules/csscolormin/` to revert the csscolormin to Node.js module.
