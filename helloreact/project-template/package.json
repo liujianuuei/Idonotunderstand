@@ -1,8 +1,8 @@
 {
-  "name": "Idonotunderstand",
+  "name": "project-template",
   "version": "1.0.0",
-  "description": "![What I cannot create, I do not understand](wicncidnu.jpg)",
-  "main": "index.js",
+  "description": "React project template with homemade build tool.",
+  "main": "index.html",
   "dependencies": {},
   "devDependencies": {
     "@babel/cli": "^7.2.3",
@@ -18,7 +18,11 @@
     "watch": "^1.0.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "scripts\\build",
+    "deploy": "scripts\\deploy",
+    "cleanup": "scripts\\cleanup",
+    "watch": "scripts\\watch"
   },
   "repository": {
     "type": "git",
@@ -29,5 +33,11 @@
   "bugs": {
     "url": "https://github.com/jianliuwei/Idonotunderstand/issues"
   },
-  "homepage": "https://github.com/jianliuwei/Idonotunderstand#readme"
+  "homepage": "https://github.com/jianliuwei/Idonotunderstand#readme",
+  "babel": {
+    "presets": [
+      "@babel/preset-react",
+      "@babel/preset-env"
+    ]
+  }
 }

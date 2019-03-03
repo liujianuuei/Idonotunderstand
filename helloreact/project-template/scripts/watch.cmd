@@ -1,0 +1,1 @@
+node_modules\.bin\watch "scripts\build.cmd" js/source css

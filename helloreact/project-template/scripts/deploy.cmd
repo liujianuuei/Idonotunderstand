@@ -9,12 +9,12 @@ call scripts\build.cmd
 
 REM minify js
 echo uglifyjs compressing...
-call ..\..\node_modules\.bin\uglifyjs bundle.js -o _deployme\bundle.js
+call node_modules\.bin\uglifyjs bundle.js -o _deployme\bundle.js
 echo uglifyjs compressing... DONE
 
 REM minify css
 echo cssshrink compressing...
-call ..\..\node_modules\.bin\cssshrink bundle.css > _deployme\bundle.css
+call node_modules\.bin\cssshrink bundle.css > _deployme\bundle.css
 echo cssshrink compressing... DONE
 
 REM copy html and images
