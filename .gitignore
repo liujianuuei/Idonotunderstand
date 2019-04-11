@@ -69,3 +69,7 @@ package-lock.json
 # Gradle
 .gradle
 build
+
+#Eclipse
+.metadata/
+RemoteSystemsTempFiles/
