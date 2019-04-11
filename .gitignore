@@ -65,3 +65,7 @@ typings/
 
 # Node.js
 package-lock.json
+
+# Gradle
+.gradle
+
