@@ -62,6 +62,7 @@ typings/
 
 # JetBrains IDEs
 .idea/
+*.iml
 
 # Node.js
 package-lock.json
