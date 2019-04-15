@@ -6,6 +6,6 @@
 
 2. Create Java files.
 3. Update `build.gradle`.
-4. To build the application, execute `./gradlew build` under project root.
+4. To build the application, execute `gradlew build` under project root.
 5. To run the application, execute `java -jar build/libs/tryspringboot-gradle-wrapper-0.1.0.jar` under project root.
 6. To access the application, type `http://localhost:8090` in browser.
