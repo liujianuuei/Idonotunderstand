@@ -73,3 +73,6 @@ build
 #Eclipse
 .metadata/
 RemoteSystemsTempFiles/
+
+# Maven
+target/
