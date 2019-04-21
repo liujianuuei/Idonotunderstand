@@ -1,0 +1,15 @@
+server:
+  port: 8200
+
+spring:
+  application:
+    name: tryspringcloud-netflix-eureka-zuul
+
+zuul:
+  routes:
+    trysprinigcloud-netflix-eureka-clientone:
+      path: /serviceone/*
+      url: http://localhost:8000/serviceone
+    trysprinigcloud-netflix-eureka-clientanr:
+      path: /serviceanr/*
+      url: http://localhost:8001/serviceanr
