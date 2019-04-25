@@ -1,0 +1,11 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: suitecloudflowdefinition-flow-definition
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

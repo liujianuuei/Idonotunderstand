@@ -1,0 +1,11 @@
+server:
+  port: 6000
+
+spring:
+  application:
+    name: suitecloud-api-registry
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
