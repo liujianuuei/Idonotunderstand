@@ -4,7 +4,7 @@ import org.apache.mina.common.IoAcceptor;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
 import org.apache.mina.transport.socket.nio.SocketAcceptor;
 import org.apache.mina.transport.socket.nio.SocketAcceptorConfig;
-import tech.liujianwei.codec.PlzProtocolCodecFactory;
+import tech.liujianwei.xinhua08.codec.PlzProtocolCodecFactory;
 
 import java.net.InetSocketAddress;
 

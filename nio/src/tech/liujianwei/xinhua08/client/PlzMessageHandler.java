@@ -2,9 +2,9 @@ package tech.liujianwei.xinhua08.client;
 
 import org.apache.mina.common.IoSession;
 import org.apache.mina.handler.demux.MessageHandler;
-import tech.liujianwei.client.processors.PlzMsgHpProcessor;
-import tech.liujianwei.model.AbstractPlzMsg;
-import tech.liujianwei.model.PlzHpMsg;
+import tech.liujianwei.xinhua08.client.processors.PlzMsgHpProcessor;
+import tech.liujianwei.xinhua08.model.AbstractPlzMsg;
+import tech.liujianwei.xinhua08.model.PlzHpMsg;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.TimeUnit;

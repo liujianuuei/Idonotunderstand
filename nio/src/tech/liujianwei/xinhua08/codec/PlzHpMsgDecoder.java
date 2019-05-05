@@ -5,7 +5,7 @@ import org.apache.mina.common.IoSession;
 import org.apache.mina.filter.codec.ProtocolDecoderOutput;
 import org.apache.mina.filter.codec.demux.MessageDecoder;
 import org.apache.mina.filter.codec.demux.MessageDecoderResult;
-import tech.liujianwei.model.PlzHpMsg;
+import tech.liujianwei.xinhua08.model.PlzHpMsg;
 import tech.liujianwei.xinhua08.utils.PlzUtils;
 
 public class PlzHpMsgDecoder implements MessageDecoder {

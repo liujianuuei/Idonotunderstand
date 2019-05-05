@@ -4,8 +4,8 @@ import org.apache.mina.common.ByteBuffer;
 import org.apache.mina.common.IoSession;
 import org.apache.mina.filter.codec.ProtocolEncoderOutput;
 import org.apache.mina.filter.codec.demux.MessageEncoder;
-import tech.liujianwei.model.AbstractPlzMsg;
-import tech.liujianwei.model.LoginMsg;
+import tech.liujianwei.xinhua08.model.AbstractPlzMsg;
+import tech.liujianwei.xinhua08.model.LoginMsg;
 
 import java.nio.charset.Charset;
 import java.util.Collections;

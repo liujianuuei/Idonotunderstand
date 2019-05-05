@@ -3,7 +3,7 @@ package tech.liujianwei.xinhua08.client;
 import org.apache.mina.common.IdleStatus;
 import org.apache.mina.common.IoSession;
 import org.apache.mina.handler.demux.DemuxingIoHandler;
-import tech.liujianwei.model.AbstractPlzMsg;
+import tech.liujianwei.xinhua08.model.AbstractPlzMsg;
 
 public class PlzIoHandler extends DemuxingIoHandler {
     PlzMessageHandler handler;

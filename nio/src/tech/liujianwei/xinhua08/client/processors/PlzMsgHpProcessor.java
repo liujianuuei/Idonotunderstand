@@ -1,6 +1,6 @@
 package tech.liujianwei.xinhua08.client.processors;
 
-import tech.liujianwei.model.AbstractPlzMsg;
+import tech.liujianwei.xinhua08.model.AbstractPlzMsg;
 
 public class PlzMsgHpProcessor extends PlzMsgProcessor {
     @Override

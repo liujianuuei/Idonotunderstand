@@ -5,8 +5,8 @@ import org.apache.mina.common.IoSession;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
 import org.apache.mina.transport.socket.nio.SocketConnector;
 import org.apache.mina.transport.socket.nio.SocketConnectorConfig;
-import tech.liujianwei.codec.PlzProtocolCodecFactory;
-import tech.liujianwei.model.LoginMsg;
+import tech.liujianwei.xinhua08.codec.PlzProtocolCodecFactory;
+import tech.liujianwei.xinhua08.model.LoginMsg;
 
 import java.net.InetSocketAddress;
 
