@@ -16,27 +16,24 @@ public class ReverseLinkedList {
         print(l);
 
         // Core Alg
-        LinkedList a = l;
-        LinkedList b = a.getNext();
-        LinkedList c = b.getNext();
-        a.setNext(null);
-        while (b != null) {
-            b.setNext(a);
-            a = b;
-            b = c;
-            if (c != null) {
-                c = c.getNext();
-            }
+        LinkedList prev = null;
+        LinkedList cur = l;
+        LinkedList next = null;
+        while (cur != null) {
+            next = cur.getNext();
+            cur.setNext(prev);
+            prev = cur;
+            cur = next;
         }
         // END
 
-        print(a);
+        print(prev);
     }
 
     public static void print(final LinkedList l) {
         System.out.println();
         LinkedList t = l;
-        while(t != null) {
+        while (t != null) {
             System.out.print(t.getValue());
             t = t.getNext();
         }
@@ -71,3 +68,22 @@ class LinkedList {
         return this.next != null;
     }
 }
+
+
+/*
+// Core Alg
+LinkedList self = l.getNext();
+LinkedList a = l;
+LinkedList b = null;
+LinkedList c = null;
+LinkedList d = null;
+while (a != null) {
+    b = a.getNext();
+    c = b.getNext();
+    d = c != null ? c.getNext() : null;
+    b.setNext(a);
+    a.setNext(d);
+    a = c;
+}
+// END
+ */
