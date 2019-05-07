@@ -81,3 +81,5 @@ target/
 .sonarlint
 
 *.class
+*.classpath
+*.project
