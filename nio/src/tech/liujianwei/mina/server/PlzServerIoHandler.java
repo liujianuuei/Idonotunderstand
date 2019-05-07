@@ -1,11 +1,11 @@
-package tech.liujianwei.xinhua08.server;
+package tech.liujianwei.mina.server;
 
 import org.apache.mina.common.IdleStatus;
 import org.apache.mina.common.IoHandlerAdapter;
 import org.apache.mina.common.IoSession;
 import org.apache.mina.util.SessionLog;
-import tech.liujianwei.xinhua08.model.LoginMsg;
-import tech.liujianwei.xinhua08.model.PlzHpMsg;
+import tech.liujianwei.mina.model.LoginMsg;
+import tech.liujianwei.mina.model.PlzHpMsg;
 
 public class PlzServerIoHandler extends IoHandlerAdapter {
 

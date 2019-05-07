@@ -1,22 +1,26 @@
-package tech.liujianwei.xinhua08.codec;
+package tech.liujianwei.mina.codec;
 
 import org.apache.mina.common.ByteBuffer;
 import org.apache.mina.common.IoSession;
 import org.apache.mina.filter.codec.ProtocolDecoderOutput;
 import org.apache.mina.filter.codec.demux.MessageDecoder;
 import org.apache.mina.filter.codec.demux.MessageDecoderResult;
-import tech.liujianwei.xinhua08.model.LoginMsg;
-import tech.liujianwei.xinhua08.utils.PlzUtils;
+import tech.liujianwei.mina.model.PlzHpMsg;
+import tech.liujianwei.mina.utils.PlzUtils;
 
-public class PlzLoginMsgDecoder implements MessageDecoder {
+public class PlzHpMsgDecoder implements MessageDecoder {
+
     @Override
     public MessageDecoderResult decodable(IoSession session, ByteBuffer buf) {
-        if (buf.remaining() < 40) {
+        System.out.println("buf position is "+buf.position());
+        System.out.println("buf remaining is "+buf.remaining());
+
+        if (buf.remaining() < 16) {
             return MessageDecoderResult.NEED_DATA;
         }
-        buf.get(); // == '|'
+        buf.get();
         String type = PlzUtils.getStringFromByteBuffer(buf, 2);
-        if("LN".equals(type)) {
+        if("HP".equals(type)) {
             return MessageDecoderResult.OK;
         }
         return MessageDecoderResult.NOT_OK;
@@ -24,9 +28,9 @@ public class PlzLoginMsgDecoder implements MessageDecoder {
 
     @Override
     public MessageDecoderResult decode(IoSession session, ByteBuffer buf, ProtocolDecoderOutput output) throws Exception {
-        PlzUtils.getStringFromByteBuffer(buf, 40);
-        LoginMsg msg = new LoginMsg();
-        msg.setData("|LN|user:liujianwei,password:123456|END|");
+        String s = PlzUtils.getStringFromByteBuffer(buf, 22);
+        PlzHpMsg msg = new PlzHpMsg();
+        msg.setData(s);
         output.write(msg);
         return MessageDecoderResult.OK;
     }

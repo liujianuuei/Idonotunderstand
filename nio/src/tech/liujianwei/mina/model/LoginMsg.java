@@ -1,4 +1,4 @@
-package tech.liujianwei.xinhua08.model;
+package tech.liujianwei.mina.model;
 
 public class LoginMsg extends BasicPlzMsg {
 

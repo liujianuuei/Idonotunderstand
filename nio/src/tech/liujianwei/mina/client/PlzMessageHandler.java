@@ -1,10 +1,10 @@
-package tech.liujianwei.xinhua08.client;
+package tech.liujianwei.mina.client;
 
 import org.apache.mina.common.IoSession;
 import org.apache.mina.handler.demux.MessageHandler;
-import tech.liujianwei.xinhua08.client.processors.PlzMsgHpProcessor;
-import tech.liujianwei.xinhua08.model.AbstractPlzMsg;
-import tech.liujianwei.xinhua08.model.PlzHpMsg;
+import tech.liujianwei.mina.client.processors.PlzMsgHpProcessor;
+import tech.liujianwei.mina.model.AbstractPlzMsg;
+import tech.liujianwei.mina.model.PlzHpMsg;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.TimeUnit;

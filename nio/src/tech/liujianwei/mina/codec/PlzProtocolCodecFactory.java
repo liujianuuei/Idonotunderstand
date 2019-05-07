@@ -1,4 +1,4 @@
-package tech.liujianwei.xinhua08.codec;
+package tech.liujianwei.mina.codec;
 
 import org.apache.mina.filter.codec.demux.DemuxingProtocolCodecFactory;
 

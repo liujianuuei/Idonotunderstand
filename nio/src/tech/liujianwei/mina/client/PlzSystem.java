@@ -1,4 +1,4 @@
-package tech.liujianwei.xinhua08.client;
+package tech.liujianwei.mina.client;
 
 public class PlzSystem {
 

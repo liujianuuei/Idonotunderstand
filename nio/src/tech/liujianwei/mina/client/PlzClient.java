@@ -1,12 +1,12 @@
-package tech.liujianwei.xinhua08.client;
+package tech.liujianwei.mina.client;
 
 import org.apache.mina.common.ConnectFuture;
 import org.apache.mina.common.IoSession;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
 import org.apache.mina.transport.socket.nio.SocketConnector;
 import org.apache.mina.transport.socket.nio.SocketConnectorConfig;
-import tech.liujianwei.xinhua08.codec.PlzProtocolCodecFactory;
-import tech.liujianwei.xinhua08.model.LoginMsg;
+import tech.liujianwei.mina.codec.PlzProtocolCodecFactory;
+import tech.liujianwei.mina.model.LoginMsg;
 
 import java.net.InetSocketAddress;
 

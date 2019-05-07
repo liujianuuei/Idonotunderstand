@@ -1,11 +1,11 @@
-package tech.liujianwei.xinhua08.codec;
+package tech.liujianwei.mina.codec;
 
 import org.apache.mina.common.ByteBuffer;
 import org.apache.mina.common.IoSession;
 import org.apache.mina.filter.codec.ProtocolEncoderOutput;
 import org.apache.mina.filter.codec.demux.MessageEncoder;
-import tech.liujianwei.xinhua08.model.AbstractPlzMsg;
-import tech.liujianwei.xinhua08.model.PlzHpMsg;
+import tech.liujianwei.mina.model.AbstractPlzMsg;
+import tech.liujianwei.mina.model.PlzHpMsg;
 
 import java.nio.charset.Charset;
 import java.util.Collections;

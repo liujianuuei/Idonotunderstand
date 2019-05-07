@@ -1,4 +1,4 @@
-package tech.liujianwei.xinhua08.utils;
+package tech.liujianwei.mina.utils;
 
 import org.apache.mina.common.ByteBuffer;
 
