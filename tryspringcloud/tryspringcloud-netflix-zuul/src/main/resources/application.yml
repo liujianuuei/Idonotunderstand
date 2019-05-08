@@ -5,6 +5,10 @@ spring:
   application:
     name: tryspringcloud-netflix-eureka-zuul
 
+jwt:
+  header: Authorization
+  secret: mySecret
+
 zuul:
   routes:
     trysprinigcloud-netflix-eureka-clientone:
