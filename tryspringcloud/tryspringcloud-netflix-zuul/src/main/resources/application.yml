@@ -16,4 +16,4 @@ zuul:
       url: http://localhost:8000/serviceone
     trysprinigcloud-netflix-eureka-clientanr:
       path: /serviceanr/*
-      url: http://localhost:8001/serviceanr
+      url: http://localhost:9000/serviceanr
