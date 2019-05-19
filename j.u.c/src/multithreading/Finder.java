@@ -19,9 +19,8 @@ public class Finder {
         System.out.println("preparing tasks...");
         ExecutorService exec = Executors.newFixedThreadPool(poolSize);
         List<Callable<Number>> tasks = new ArrayList<>();
+        Worker worker = new Worker(new Number(start));
         for (long l = start; l <= end; l++) {
-            Worker worker = new Worker();
-            worker.setNumber(new Number(l));
             tasks.add(worker);
         }
         System.out.println("executing tasks...");
@@ -57,13 +56,25 @@ public class Finder {
 class Worker implements Callable<Number> {
     private Number number;
 
-    public Number call() throws Exception {
-        number.setPrime(isPrime(number.getValue()));
-        return number;
+    public Worker(Number number) {
+        this.number = number;
+    }
+
+    @Override
+    public Number call() {
+        Number t = getNumber();
+        t.setPrime(isPrime(t.getValue()));
+        return t;
     }
 
     public void setNumber(Number num) {
         this.number = num;
+    }
+
+    public Number getNumber() {
+        synchronized (number) {
+            return new Number(number.getAndIncrement());
+        }
     }
 
     public boolean isPrime(long number) {
@@ -95,6 +106,12 @@ class Number implements Comparable<Number> {
         this.value = value;
     }
 
+    public long getAndIncrement() {
+        long v = this.value;
+        this.value += 1;
+        return v;
+    }
+
     public boolean isPrime() {
         return isPrime;
     }
@@ -119,3 +136,6 @@ class Number implements Comparable<Number> {
         return String.valueOf(this.value);
     }
 }
+
+// 2.536
+// 1.622
