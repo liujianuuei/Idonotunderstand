@@ -24,9 +24,9 @@ public class Finder {
             tasks.add(worker);
         }
         System.out.println("executing tasks...");
-        final List<Future<Number>> results = exec.invokeAll(tasks, 5 * 60, TimeUnit.SECONDS);
+        final List<Future<Number>> results = exec.invokeAll(tasks, 1 * 60 * 60, TimeUnit.SECONDS);
         exec.shutdown();
-        exec.awaitTermination(60 * 60, TimeUnit.SECONDS);
+        exec.awaitTermination(1 * 60 * 60, TimeUnit.SECONDS);
 
         System.out.println("reducing tasks...");
         for (Future<Number> f : results) {
