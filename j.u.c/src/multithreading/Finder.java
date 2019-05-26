@@ -2,6 +2,7 @@ package multithreading;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.*;
 
@@ -14,21 +15,24 @@ public class Finder {
     }
 
     public List<Number> find(final long start, final long end) throws InterruptedException, ExecutionException {
-        List<Number> primeNums = new ArrayList<Number>();
-
         System.out.println("preparing tasks...");
         ExecutorService exec = Executors.newFixedThreadPool(poolSize);
-        List<Callable<Number>> tasks = new ArrayList<>();
+        final List<Future<Number>> results = new ArrayList<>((int) (end - start + 1));
+        //List<Callable<Number>> tasks = new ArrayList<>();
         Worker worker = new Worker(new Number(start));
-        for (long l = start; l <= end; l++) {
-            tasks.add(worker);
-        }
         System.out.println("executing tasks...");
-        final List<Future<Number>> results = exec.invokeAll(tasks, 1 * 60 * 60, TimeUnit.SECONDS);
+        for (long l = start; l <= end; l++) {
+            results.add(exec.submit(worker));
+            //tasks.add(worker);
+        }
+        //System.out.println("executing tasks...");
+        //results.addAll(exec.invokeAll(tasks, 24 * 60 * 60, TimeUnit.SECONDS));
         exec.shutdown();
-        exec.awaitTermination(1 * 60 * 60, TimeUnit.SECONDS);
+        System.out.println("awaiting termination...");
+        exec.awaitTermination(24 * 60 * 60, TimeUnit.SECONDS);
 
-        System.out.println("reducing tasks...");
+        System.out.println("reducing results...");
+        List<Number> primeNums = new ArrayList<>((int) ((end - start) / 2));
         for (Future<Number> f : results) {
             if (f.get().isPrime()) {
                 primeNums.add(f.get());
@@ -40,21 +44,19 @@ public class Finder {
     public static void main(String[] args) {
         long start = System.currentTimeMillis();
         try {
-            List<Number> results = new Finder(100).find(100000000, 101000000);
+            List<Number> results = new Finder(100).find(100000000, 200000000);
             Collections.sort(results);
-            for (Number n : results) {
-                System.out.println(n);
-            }
+            System.out.println("DONE. Found " + results.size() + " prime numbers.");
         } catch (Exception e) {
             e.printStackTrace();
         }
         long end = System.currentTimeMillis();
-        System.out.println((end - start) / 1000.00);
+        System.out.println((end - start) / 1000.00 + " sec");
     }
 }
 
 class Worker implements Callable<Number> {
-    private Number number;
+    private volatile Number number;
 
     public Worker(Number number) {
         this.number = number;
@@ -62,8 +64,13 @@ class Worker implements Callable<Number> {
 
     @Override
     public Number call() {
-        Number t = getNumber();
-        t.setPrime(isPrime(t.getValue()));
+        Number t = null;
+        try {
+            t = getNumber();
+            t.setPrime(isPrime(t.getValue()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return t;
     }
 
@@ -78,6 +85,7 @@ class Worker implements Callable<Number> {
     }
 
     public boolean isPrime(long number) {
+        //track(number);
         if (number <= 1) {
             return false;
         }
@@ -87,6 +95,12 @@ class Worker implements Callable<Number> {
             }
         }
         return true;
+    }
+
+    private void track(long number) {
+        if (number % 10000 == 0) {
+            System.out.println("[" + new Date() + "] " + Thread.currentThread().getName() + " calculating..." + number);
+        }
     }
 }
 
@@ -99,7 +113,7 @@ class Number implements Comparable<Number> {
     }
 
     public long getValue() {
-        return value;
+        return this.value;
     }
 
     public void setValue(long value) {
@@ -137,5 +151,6 @@ class Number implements Comparable<Number> {
     }
 }
 
-// 2.536
-// 1.622
+// - Reuse of Callable/Runnable instance will increase performance by 36%
+// - Increasement of the collection capacity is memory-consuming, so remember to set `initialCapacity` at first
+// - Logging is very time-consuming
