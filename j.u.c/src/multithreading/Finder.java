@@ -17,8 +17,8 @@ public class Finder {
     public List<Number> find(final long start, final long end) throws InterruptedException, ExecutionException {
         System.out.println("preparing tasks...");
         ExecutorService exec = Executors.newFixedThreadPool(poolSize);
-        final List<Future<Number>> results = new ArrayList<>((int) (end - start + 1));
-        //List<Callable<Number>> tasks = new ArrayList<>();
+        List<Future<Number>> results = new ArrayList<>((int) (end - start + 1));
+        //List<Callable<Number>> tasks = new ArrayList<>((int) (end - start + 1));
         Worker worker = new Worker(new Number(start));
         System.out.println("executing tasks...");
         for (long l = start; l <= end; l++) {
@@ -26,13 +26,13 @@ public class Finder {
             //tasks.add(worker);
         }
         //System.out.println("executing tasks...");
-        //results.addAll(exec.invokeAll(tasks, 24 * 60 * 60, TimeUnit.SECONDS));
+        //List<Future<Number>> results = exec.invokeAll(tasks, 24 * 60 * 60, TimeUnit.SECONDS);
         exec.shutdown();
         System.out.println("awaiting termination...");
         exec.awaitTermination(24 * 60 * 60, TimeUnit.SECONDS);
 
         System.out.println("reducing results...");
-        List<Number> primeNums = new ArrayList<>((int) ((end - start) / 2));
+        List<Number> primeNums = new ArrayList<>((int) ((end - start + 1) / 10));
         for (Future<Number> f : results) {
             if (f.get().isPrime()) {
                 primeNums.add(f.get());
@@ -44,7 +44,7 @@ public class Finder {
     public static void main(String[] args) {
         long start = System.currentTimeMillis();
         try {
-            List<Number> results = new Finder(100).find(100000000, 200000000);
+            List<Number> results = new Finder(1000).find(100000000, 200000000);
             Collections.sort(results);
             System.out.println("DONE. Found " + results.size() + " prime numbers.");
         } catch (Exception e) {
@@ -154,3 +154,4 @@ class Number implements Comparable<Number> {
 // - Reuse of Callable/Runnable instance will increase performance by 36%
 // - Increasement of the collection capacity is memory-consuming, so remember to set `initialCapacity` at first
 // - Logging is very time-consuming
+// - `submit`-in-loop give better performance than `invokeAll`-at-last
