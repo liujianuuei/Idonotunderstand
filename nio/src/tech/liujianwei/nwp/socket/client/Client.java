@@ -5,6 +5,8 @@ import tech.liujianwei.nwp.socket.b64encodec.util.IO;
 import java.io.*;
 import java.net.Socket;
 import java.util.Base64;
+import java.util.Date;
+import java.util.Random;
 
 public class Client {
     private Socket clientSocket;
@@ -13,12 +15,15 @@ public class Client {
 
     private IO io;
 
-    public Client() throws IOException {
-        clientSocket = new Socket("127.0.0.1", 7000);
+    public Client(String host) throws IOException {
+        clientSocket = new Socket(host, 7000);
         io = new IO();
     }
 
     private String onMessage(byte[] bytes) throws IOException {
+        System.out.println("========= N W P =========");
+        System.out.println("New message received");
+        System.out.println("Send to server for b64 encoding");
         output().write(bytes);
         output().write("\4".getBytes());
         output().flush();
@@ -42,25 +47,20 @@ public class Client {
 
     private static void sleep() {
         try {
-            Thread.sleep(1 * 60 * 1000); // 1min
+            Thread.sleep(10 * 1000);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private static void print(String encoded) {
-        String decoded = new String(Base64.getDecoder().decode(encoded.getBytes()));
-        System.out.println(decoded);
-    }
-
     public static void main(String[] args) {
         try {
-            Client client = new Client();
-            StringBuilder content = new StringBuilder();
-            for (int i = 0; i < 1000000; i++) {
-                content.append("GoodLuck");
-            }
+            Client client = new Client(args[0]);
             while (true) {
+                StringBuilder content = new StringBuilder();
+                for (int i = 0; i < 1; i++) {
+                    content.append(getRandomString(10));
+                }
                 String encoded = client.onMessage(content.toString().getBytes());
                 print(encoded);
                 sleep();
@@ -68,5 +68,21 @@ public class Client {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private static void print(String encoded) {
+        String decoded = new String(Base64.getDecoder().decode(encoded.getBytes()));
+        System.out.println("[" + new Date() + "] " + encoded + "(" + decoded + ")");
+    }
+
+    private static String getRandomString(int length) {
+        String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        Random random = new Random();
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < length; i++) {
+            int number = random.nextInt(62);
+            sb.append(str.charAt(number));
+        }
+        return sb.toString();
     }
 }

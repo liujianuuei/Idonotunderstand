@@ -19,11 +19,12 @@ public class B64Worker implements Runnable {
 
     @Override
     public void run() {
-        System.out.println(Thread.currentThread().getName() + " is handling request");
         try {
             InputStream is = new BufferedInputStream(clientSocket.getInputStream());
             DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
             while (true) {
+                System.out.println("========= N W P =========");
+                System.out.println(Thread.currentThread().getName() + " is working");
                 byte[] data = io.read(is);
                 dos.write(handler.toBase64(data).getBytes());
                 dos.write("\4".getBytes());
