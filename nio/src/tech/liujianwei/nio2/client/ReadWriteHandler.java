@@ -19,7 +19,7 @@ public class ReadWriteHandler implements CompletionHandler<Integer, Attachment> 
             byte[] bytes = new byte[limit];
             att.buffer.get(bytes, 0, limit);
             String msg = new String(bytes, CSUTF8);
-            System.out.printf("Server responded: %s%n", msg);
+            System.out.printf("B64Server responded: %s%n", msg);
 
             try {
                 msg = "";
@@ -51,7 +51,7 @@ public class ReadWriteHandler implements CompletionHandler<Integer, Attachment> 
 
     @Override
     public void failed(Throwable t, Attachment att) {
-        System.err.println("Server not responding");
+        System.err.println("B64Server not responding");
         System.exit(1);
     }
 }

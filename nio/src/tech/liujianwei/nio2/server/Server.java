@@ -14,7 +14,7 @@ public class Server {
         try {
             channelServer = AsynchronousServerSocketChannel.open();
             channelServer.bind(new InetSocketAddress(HOST, PORT));
-            System.out.printf("Server listening at %s%n", channelServer.getLocalAddress());
+            System.out.printf("B64Server listening at %s%n", channelServer.getLocalAddress());
         } catch (IOException ioe) {
             System.err.println("Unable to open or bind server socket channel");
             return;
@@ -27,7 +27,7 @@ public class Server {
         try {
             Thread.currentThread().join();
         } catch (InterruptedException ie) {
-            System.out.println("Server terminating");
+            System.out.println("B64Server terminating");
         }
     }
 }

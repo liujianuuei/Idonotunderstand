@@ -27,10 +27,10 @@ public class Client {
             channel.connect(new InetSocketAddress(HOST, PORT)).get();
             System.out.printf("Client at %s connected%n", channel.getLocalAddress());
         } catch (ExecutionException | InterruptedException eie) {
-            System.err.println("Server not responding");
+            System.err.println("B64Server not responding");
             return;
         } catch (IOException ioe) {
-            System.err.println("Unable to obtain client socket channel¡¯s " + "local address");
+            System.err.println("Unable to obtain client socket channelï¿½ï¿½s " + "local address");
             return;
         }
 
