@@ -15,15 +15,18 @@ public class NIO {
 
     public byte[] read() throws IOException {
         LinkedList<Byte> data = new LinkedList<>();
-        ByteBuffer buffer = ByteBuffer.allocate(1024);
+        ByteBuffer buffer = ByteBuffer.allocate(1024 * 1024);
         int size = clientChannel.read(buffer);
         while (size > 0) {
             buffer.flip();
             while (buffer.hasRemaining()) {
-                data.add(buffer.get());
+                byte b = buffer.get(); // this is in memory, should be fast.
+                if (b != "\4".getBytes()[0]) { // '\4' aims to be compatible with Java I/O which is ued by client.
+                    data.add(b);
+                }
             }
             buffer.clear();
-            size = clientChannel.read(buffer);
+            size = clientChannel.read(buffer); // return 0 if no more data, so no need to check `EOT`.
         }
         return Bytes.toArray(data);
     }

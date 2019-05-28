@@ -26,6 +26,7 @@ public class B64Server {
             while (true) {
                 try {
                     // 监测是否有新的连接
+                    //System.out.println("Checking Selector for new connection");
                     if (acceptanceSelector.select(1) > 0) {
                         Set<SelectionKey> selectedKeys = acceptanceSelector.selectedKeys();
                         Iterator<SelectionKey> keys = selectedKeys.iterator();
@@ -53,6 +54,7 @@ public class B64Server {
             while (true) {
                 try {
                     // 批量轮询是否有哪些连接有数据可读
+                    //System.out.println("Checking Selector for ready channel");
                     if (readinessSelector.select(1) > 0) {
                         Set<SelectionKey> selectedKeys = readinessSelector.selectedKeys();
                         Iterator<SelectionKey> keys = selectedKeys.iterator();

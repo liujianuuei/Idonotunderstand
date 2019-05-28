@@ -59,7 +59,7 @@ public class Client {
             while (true) {
                 StringBuilder content = new StringBuilder();
                 for (int i = 0; i < 1; i++) {
-                    content.append(getRandomString(10));
+                    content.append(getRandomString(10000));
                 }
                 String encoded = client.onMessage(content.toString().getBytes());
                 print(encoded);

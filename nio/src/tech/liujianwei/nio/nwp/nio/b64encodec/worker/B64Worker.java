@@ -22,10 +22,12 @@ public class B64Worker {
 
     public void run() {
         try {
+            System.out.println("========= NIO =========");
+            System.out.println(Thread.currentThread().getName() + " is working");
             byte[] data = nio.read();
-            System.out.println("SR:" + Bytes.toString(data));
+            System.out.println("Received data:" + Bytes.toString(data));
             byte[] encoded = handler.toBase64(data).getBytes(); // handler.toBase64(Bytes.decode(buffer).getBytes()).getBytes();
-            nio.write(encoded, "\4".getBytes());
+            nio.write(encoded, "\4".getBytes()); // '\4' aims to be compatible with Java I/O which is ued by client.
         } catch (IOException e) {
             e.printStackTrace();
         }
