@@ -55,7 +55,11 @@ public class Client {
 
     public static void main(String[] args) {
         try {
-            Client client = new Client(args[0]);
+            String host = "localhost";
+            if (args.length > 0) {
+                host = args[0];
+            }
+            Client client = new Client(host);
             while (true) {
                 StringBuilder content = new StringBuilder();
                 for (int i = 0; i < 1; i++) {

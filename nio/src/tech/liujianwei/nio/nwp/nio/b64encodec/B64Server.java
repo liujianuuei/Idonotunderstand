@@ -13,14 +13,14 @@ import java.util.Set;
 
 public class B64Server {
     public static void main(String[] args) throws IOException {
-        Selector acceptanceSelector = Selector.open();
-        Selector readinessSelector = Selector.open();
-
         // 对应 I/O 编程中服务端启动
         ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
         serverSocketChannel.socket().bind(new InetSocketAddress(8000));
         serverSocketChannel.configureBlocking(false);
+        Selector acceptanceSelector = Selector.open();
         serverSocketChannel.register(acceptanceSelector, SelectionKey.OP_ACCEPT);
+
+        Selector readinessSelector = Selector.open();
 
         new Thread(() -> {
             while (true) {
@@ -33,14 +33,11 @@ public class B64Server {
                         while (keys.hasNext()) {
                             SelectionKey key = keys.next();
                             if (key.isAcceptable()) {
-                                try {
-                                    // 每来一个新连接，不需要创建一个线程，而是直接注册到 Selector
-                                    SocketChannel clientChannel = ((ServerSocketChannel) key.channel()).accept();
-                                    clientChannel.configureBlocking(false);
-                                    clientChannel.register(readinessSelector, SelectionKey.OP_READ);
-                                } finally {
-                                    keys.remove();
-                                }
+                                // 每来一个新连接，不需要创建一个线程，而是直接注册到 Selector
+                                SocketChannel clientChannel = ((ServerSocketChannel) key.channel()).accept();
+                                clientChannel.configureBlocking(false);
+                                clientChannel.register(readinessSelector, SelectionKey.OP_READ);
+                                keys.remove();
                             }
                         }
                     }
@@ -61,14 +58,10 @@ public class B64Server {
                         while (keys.hasNext()) {
                             SelectionKey key = keys.next();
                             if (key.isReadable()) {
-                                try {
-                                    SocketChannel clientChannel = (SocketChannel) key.channel();
-                                    B64Worker worker = new B64Worker(clientChannel);
-                                    worker.run();
-                                } finally {
-                                    keys.remove();
-                                    key.interestOps(SelectionKey.OP_READ);
-                                }
+                                SocketChannel clientChannel = (SocketChannel) key.channel();
+                                B64Worker worker = new B64Worker(clientChannel);
+                                worker.run();
+                                keys.remove();
                             }
                         }
                     }
