@@ -20,17 +20,13 @@ public class B64Worker {
         this.nio = new NIO(this.clientChannel);
     }
 
-    public void run() {
-        try {
-            System.out.println("========= NIO =========");
-            System.out.println(Thread.currentThread().getName() + " is working");
-            byte[] data = nio.read();
-            System.out.println("Received data:" + Bytes.toString(data));
-            byte[] encoded = handler.toBase64(data).getBytes(); // handler.toBase64(Bytes.decode(buffer).getBytes()).getBytes();
-            nio.write(encoded, "\4".getBytes()); // '\4' aims to be compatible with Java I/O which is ued by client.
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void run() throws IOException {
+        System.out.println("========= NIO =========");
+        System.out.println(Thread.currentThread().getName() + " is working");
+        byte[] data = nio.read();
+        System.out.println("Received data:" + Bytes.toString(data));
+        byte[] encoded = handler.toBase64(data).getBytes(); // handler.toBase64(Bytes.decode(buffer).getBytes()).getBytes();
+        nio.write(encoded, "\4".getBytes()); // '\4' aims to be compatible with Java I/O which is ued by client.
     }
 
     private void print(byte[] bytes) {
