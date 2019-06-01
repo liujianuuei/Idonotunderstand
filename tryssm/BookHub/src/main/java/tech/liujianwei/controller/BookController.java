@@ -16,6 +16,7 @@ public class BookController {
     public ModelAndView get(@PathVariable String id) {
         System.out.println("BookController:/book/" + id);
         Book book = new BookServiceImpl().getBook(Integer.valueOf(id));
+        // Can also use Model+"book" instead of ModelAndView
         ModelAndView bookView = new ModelAndView("book");
         bookView.addObject("book", book);
         return bookView;
