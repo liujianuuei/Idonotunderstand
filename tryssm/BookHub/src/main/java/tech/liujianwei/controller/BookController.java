@@ -30,6 +30,7 @@ public class BookController {
     @GetMapping
     public ModelAndView get(Model model) {
         System.out.println("BookController:GET:/book/");
+        model.addAttribute("book", new Book());
         ModelAndView bookView = new ModelAndView("book_creation");
         return bookView;
     }
