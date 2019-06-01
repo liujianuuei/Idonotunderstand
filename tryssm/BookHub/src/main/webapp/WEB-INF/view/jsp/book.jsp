@@ -8,9 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <%@ page isELIgnored="false" %>
     <title>BookHub - Book</title>
 </head>
 <body>
- Spring in Action - Craig Walls
+${book.name} - ${book.author.name}[${book.author.nationality}]
 </body>
 </html>
