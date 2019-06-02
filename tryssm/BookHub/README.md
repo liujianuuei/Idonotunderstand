@@ -14,7 +14,12 @@ Create a Maven project, no need to select archetype. Fill pom.xml with dependenc
 
 Go to IntelliJ IDEA | Run | Edit Configurations... | Templates | Tomcat Server | Local, Select local installed Tomcat at [Application server], Select local installed JDK at [JRE].
 
-Go to IntelliJ IDEA | Run | Edit Configurations..., Click on [+] | Tomcat Server | Local, Input name for Tomcat server, others are populated by default.
+Go to IntelliJ IDEA | Run | Edit Configurations..., Click on [+] | Tomcat Server | Local,
+
+- Input BookHub for Name of Tomcat server
+- Add Artifact in Deployment tab, change Application context to /BookHub
+
+Others are populated by default. Reference [IntelliJ IDEA – Run / debug web application on Tomcat](https://www.mkyong.com/intellij/intellij-idea-run-debug-web-application-on-tomcat/) for more details.
 
 #### Maven
 
@@ -27,7 +32,11 @@ Go to IntelliJ IDEA | File | Settings | Maven, configure
 
 #### Deploy
 
-Use Maven Tomcat plugin to deploy war. Files need to change:
+Use IntelliJ IDEA to deploy war to Tomcat, just click to run BookHub Tomcat server configured just now.
+
+Alternatively you can use Maven Tomcat plugin to deploy war, which is recommended.
+
+Files need to change:
 
 - {Maven_HOME}\conf\settings.xml
 - {Tomcat_HOME}\conf\tomcat-users.xml
