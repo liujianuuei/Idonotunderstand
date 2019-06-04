@@ -7,6 +7,6 @@
     <title>BookHub - Book</title>
 </head>
 <body>
-${book.name} - ${book.author.name}[${book.author.nationality}]
+${book}
 </body>
 </html>

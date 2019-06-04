@@ -1,9 +1,13 @@
 package tech.liujianwei.model;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Book {
     private int id;
     private String name;
-    private Author author;
+    private List<Author> authors;
 
     public int getId() {
         return id;
@@ -22,17 +26,25 @@ public class Book {
         return this;
     }
 
-    public Author getAuthor() {
-        return author;
+    public List<Author> getAuthors() {
+        return authors;
     }
 
-    public Book setAuthor(Author author) {
-        this.author = author;
+    public Book setAuthors(List<Author> authors) {
+        this.authors = authors;
+        return this;
+    }
+
+    public Book addAuthor(Author author) {
+        if (this.authors == null) {
+            this.authors = new ArrayList<>();
+        }
+        this.authors.add(author);
         return this;
     }
 
     @Override
     public String toString() {
-        return id + ". " + name + " - " + author;
+        return id + ". " + name + " - " + authors.stream().map(e -> e.toString()).collect(Collectors.joining(", "));
     }
 }
