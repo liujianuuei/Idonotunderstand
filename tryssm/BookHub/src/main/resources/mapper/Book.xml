@@ -10,4 +10,7 @@
         <include refid="bookFields"/>
         from book as book where id=#{id}
     </select>
+    <insert id="addBook" parameterType="tech.liujianwei.model.Book" keyProperty="id" useGeneratedKeys="true">
+        insert into book (name) values (#{name})
+    </insert>
 </mapper>

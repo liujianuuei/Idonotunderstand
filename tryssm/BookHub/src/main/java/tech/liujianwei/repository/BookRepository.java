@@ -6,4 +6,6 @@ import tech.liujianwei.model.Book;
 @Repository
 public interface BookRepository {
     Book getBook(int id);
+
+    void addBook(Book book);
 }

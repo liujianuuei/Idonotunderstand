@@ -41,6 +41,7 @@ public class BookController {
             return "error";
         }
         System.out.println("BookController:POST:/book/" + book);
+        bookService.addBook(book);
         return "book_creation_success";
     }
 
