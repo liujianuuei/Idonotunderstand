@@ -1,20 +1,20 @@
 package tech.liujianwei.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import tech.liujianwei.model.Book;
 import tech.liujianwei.service.BookService;
 
+import javax.annotation.Resource;
+
 @Controller
 @RequestMapping("/book")
 public class BookController {
 
-    @Autowired
+    @Resource(name="BookService")
     BookService bookService;
 
     @GetMapping("/{id}")

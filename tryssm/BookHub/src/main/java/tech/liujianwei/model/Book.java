@@ -1,8 +1,17 @@
 package tech.liujianwei.model;
 
 public class Book {
+    private int id;
     private String name;
     private Author author;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -24,6 +33,6 @@ public class Book {
 
     @Override
     public String toString() {
-        return name + " - " + author;
+        return id + ". " + name + " - " + author;
     }
 }

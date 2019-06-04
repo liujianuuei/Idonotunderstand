@@ -1,8 +1,17 @@
 package tech.liujianwei.model;
 
 public class Author {
+    private int id;
     private String name;
     private String nationality;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -24,6 +33,6 @@ public class Author {
 
     @Override
     public String toString() {
-        return name + "[" + nationality + "]";
+        return id + ". " + name + "[" + nationality + "]";
     }
 }
