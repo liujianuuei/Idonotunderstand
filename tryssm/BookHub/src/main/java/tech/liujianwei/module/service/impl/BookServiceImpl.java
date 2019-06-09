@@ -1,9 +1,9 @@
-package tech.liujianwei.service.impl;
+package tech.liujianwei.module.service.impl;
 
 import org.springframework.stereotype.Service;
-import tech.liujianwei.repository.BookRepository;
-import tech.liujianwei.model.Book;
-import tech.liujianwei.service.BookService;
+import tech.liujianwei.module.repository.BookRepository;
+import tech.liujianwei.module.model.Book;
+import tech.liujianwei.module.service.BookService;
 
 import javax.annotation.Resource;
 

@@ -5,8 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import tech.liujianwei.model.Book;
-import tech.liujianwei.service.BookService;
+import tech.liujianwei.module.api.BookApi;
+import tech.liujianwei.module.model.Book;
 
 import javax.annotation.Resource;
 
@@ -14,13 +14,13 @@ import javax.annotation.Resource;
 @RequestMapping("/book")
 public class BookController {
 
-    @Resource(name="BookService")
-    BookService bookService;
+    @Resource(name="BookApi")
+    BookApi bookApi;
 
     @GetMapping("/{id}")
     public ModelAndView get(@PathVariable String id) {
         System.out.println("BookController:GET:/book/" + id);
-        Book book = bookService.getBook(Integer.valueOf(id));
+        Book book = bookApi.getBook(Integer.valueOf(id));
         // Can also use Model+"book" instead of ModelAndView
         ModelAndView bookView = new ModelAndView("book");
         bookView.addObject("book", book);
@@ -41,7 +41,7 @@ public class BookController {
             return "error";
         }
         System.out.println("BookController:POST:/book/" + book);
-        bookService.addBook(book);
+        bookApi.addBook(book);
         return "book_creation_success";
     }
 

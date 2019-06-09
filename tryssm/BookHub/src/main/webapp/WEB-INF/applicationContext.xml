@@ -25,6 +25,6 @@
     </bean>
     <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
-        <property name="basePackage" value="tech.liujianwei.repository"/>
+        <property name="basePackage" value="tech.liujianwei.module.repository"/>
     </bean>
 </beans>

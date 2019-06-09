@@ -1,4 +1,4 @@
-package tech.liujianwei.model;
+package tech.liujianwei.module.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,10 @@ public class Book {
     private int id;
     private String name;
     private List<Author> authors;
+
+    public Book() {
+        this.authors = new ArrayList<>();
+    }
 
     public int getId() {
         return id;

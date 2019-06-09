@@ -1,7 +1,7 @@
-package tech.liujianwei.repository;
+package tech.liujianwei.module.repository;
 
 import org.springframework.stereotype.Repository;
-import tech.liujianwei.model.Book;
+import tech.liujianwei.module.model.Book;
 
 @Repository
 public interface BookRepository {

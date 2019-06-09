@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="tech.liujianwei.repository.BookRepository">
-    <resultMap id="Book" type="tech.liujianwei.model.Book">
+<mapper namespace="tech.liujianwei.module.repository.BookRepository">
+    <resultMap id="Book" type="tech.liujianwei.module.model.Book">
         <id column="book_id" property="id"/>
         <result column="book_id" property="id"/>
         <result column="book_name" property="name"/>
-        <collection property="authors" ofType="tech.liujianwei.model.Author">
+        <collection property="authors" ofType="tech.liujianwei.module.model.Author">
             <id column="author_id" property="id"/>
             <result column="author_name" property="name"/>
             <result column="author_nationality" property="nationality"/>
@@ -30,7 +30,7 @@
         WHERE
             book.id = #{id}
     </select>
-    <insert id="addBook" parameterType="tech.liujianwei.model.Book" keyProperty="id" useGeneratedKeys="true">
+    <insert id="addBook" parameterType="tech.liujianwei.module.model.Book" keyProperty="id" useGeneratedKeys="true">
         insert into book (name) values (#{name})
     </insert>
 </mapper>

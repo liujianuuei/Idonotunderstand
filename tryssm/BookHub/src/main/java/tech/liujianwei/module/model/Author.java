@@ -1,4 +1,4 @@
-package tech.liujianwei.model;
+package tech.liujianwei.module.model;
 
 public class Author {
     private int id;

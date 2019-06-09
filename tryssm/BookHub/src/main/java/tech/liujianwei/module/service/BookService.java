@@ -1,6 +1,6 @@
-package tech.liujianwei.service;
+package tech.liujianwei.module.service;
 
-import tech.liujianwei.model.Book;
+import tech.liujianwei.module.model.Book;
 
 public interface BookService {
     Book getBook(int id);
