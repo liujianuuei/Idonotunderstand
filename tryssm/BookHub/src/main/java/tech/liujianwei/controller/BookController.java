@@ -57,7 +57,7 @@ public class BookController {
     }
 
     @PostMapping("/batch")
-    public String uploadBooks(MultipartFile file) throws IOException {
+    public String uploadBooks(@RequestParam("file") MultipartFile file) throws IOException {
         File localFile = new File(file.getOriginalFilename());
         file.transferTo(localFile);
         System.out.println(FileUtils.readFileToString(localFile));

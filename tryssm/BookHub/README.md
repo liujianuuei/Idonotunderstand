@@ -34,6 +34,8 @@ Go to IntelliJ IDEA | Run | Edit Configurations..., create a Maven task with
 - Name as BookHub
 - Command line as `clean package -DskipTests`
 
+Note: `-DskipTests` will skip running, while `-Dmaven.test.skip=true` will skip even compiling.
+
 #### Build & Deploy
 
 You can build manually with `mvn clean package -DskipTests` in command line, and copy generated war to {Tomcat_HOME}\webapps.
