@@ -13,6 +13,10 @@
     <context:component-scan base-package="tech.liujianwei"/>
     <context:property-placeholder location="classpath:jdbc.properties" ignore-unresolvable="true"/>
 
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="utf-8"/>
+        <property name="maxUploadSize" value="100000000"/>
+    </bean>
     <!-- MyBatis -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <property name="url" value="${jdbc.url}"/>
